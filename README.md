@@ -50,14 +50,14 @@ callback | 按钮渲染时的回调，返回值：params：表格当前行参数
 
 ### events：
 
-事件名 | 说明 | 返回值
-:-------: | ------- | :-------:
-on-page-change | 页码改变时 | page：当前页码
-on-page-size-change | 切换每页条数时的回调，返回切换后的每页条数 | page_size：每页条数
-select-change | 勾选改变时 | checkedData：已选择的数据
-on-btn-click | 点击表格中的按钮时触发 | data：返回表格当前行数据,和当前handle的参数
-on-poptip-ok | 点击表格中的气泡提示确定按钮时触发 | data：返回表格当前行数据,和当前handle的参数
-on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：返回表格当前行数据,和当前handle的参数
+事件名 | 说明 | 返回值 | 类型 |
+:-------: | ------- | :-------: | :-------:
+on-page-change | 页码改变时 | page：当前页码 | number
+on-page-size-change | 切换每页条数时的回调，返回切换后的每页条数 | page_size：每页条数 | number
+select-change | 勾选改变时 | checkedData：已选择的数据 | []
+on-btn-click | 点击表格中的按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
+on-poptip-ok | 点击表格中的气泡提示确定按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
+on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
 
 
 ### slot：
