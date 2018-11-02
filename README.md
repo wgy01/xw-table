@@ -11,7 +11,7 @@ $ npm install xw-table --save
 ```
 import xwTable from 'xw-table';
 
-Vue.use(xwArea);
+Vue.use(xwTable);
 ```
 
 ### 页面中使用组件
