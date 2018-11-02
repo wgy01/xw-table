@@ -26,15 +26,15 @@ Vue.use(xwArea);
 
 属性 | 说明 | 类型 | 默认值
 :-------: | ------- | :-------: | :-------:
-tableColumns | 表头数据 | Array | 必传数据
-tableData | 表格数据 | Array | []
-headerShow | 页眉 | Boolean | true
-footerShow | 页脚 | Boolean | true
-seekShow | 搜索框控件 | Boolean | true
-pageShow | 分页控件 | Boolean | true
+tableColumns | 传入表头数据 | Array | 必传数据
+tableData | 传入表格数据 | Array | []
+headerShow | 是否显示页眉 | Boolean | true
+footerShow | 是否显示页脚 | Boolean | true
+seekShow | 是否显示搜索框控件 | Boolean | true
+pageShow | 是否显示分页控件 | Boolean | true
 modalTitle | 对话框标题 | String | 对话框标题
-noDataText | 数据为空时显示的提示内容 | String | 暂无数据
-pagingData | 分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
+noDataText | 表格数据为空时显示的提示内容 | String | 暂无数据
+pagingData | 传入分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
 
 
 ### handle参数：
@@ -43,8 +43,8 @@ pagingData | 分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
 name | 按钮名称 | String | 按钮
 modalShow | 是否打开对话框 | Boolean | false
 poptipOpen | 是否打开气泡提示 | Boolean | false
-button_props | 按钮的iview，api属性 | Object | {}
-poptip_props | 气泡提示的iview，api属性 | Object | {}
+button_props | 按钮组件的iview原生api属性 | Object | {}
+poptip_props | 气泡提示组件的iview原生api属性 | Object | {}
 callback | 按钮渲染时的回调，返回值：params：表格当前行参数，btnParams：按钮参数| Function(params, btnParams) | 无
 
 
