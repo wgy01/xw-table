@@ -43,8 +43,8 @@ pagingData | 分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
 name | 按钮名称 | String | 按钮
 modalShow | 是否打开对话框 | Boolean | false
 poptipOpen | 是否打开气泡提示 | Boolean | false
-button_props | 按钮的iview,api属性 | Object | {}
-poptip_props | 气泡提示的iview,api属性 | Object | {}
+button_props | 按钮的iview，api属性 | Object | {}
+poptip_props | 气泡提示的iview，api属性 | Object | {}
 callback | 按钮渲染时的回调，返回值：params：表格当前行参数，btnParams：按钮参数| Function(params, btnParams) | 无
 
 
@@ -63,7 +63,7 @@ on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：
 ### slot：
 
 名称 | 说明
-:-------: | -------
+:-------: | :-------:
 header | 表格页头
 footer | 表格页尾
 modalContent | 对话框内容
