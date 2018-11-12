@@ -48,7 +48,7 @@
 		<Modal
 		v-model="modalShow"
 		width="80%"
-		:footer-hide="true"
+		:footer-hide="modalFooterHide"
 		>
 	    	<div slot="header" style="position: relative;">
 	    		<p>{{modalTitle}}</p>
@@ -59,8 +59,12 @@
 	    	<div slot="close"></div>
 	        <slot name="modalContent" v-if="modalShow"></slot>
 	        <div slot="footer">
-	        	<Button @click="modalShow = false">取消</Button>
-	        	<Button type="primary" @click="modalShow = false">确定</Button>
+	        	<slot name="modalFooterBtn">
+	        		<div :style="{textAlign: modalBtnPlace}">
+	        			<Button type="primary" @click="modalOk">{{modalBtnName}}</Button>
+	        			<Button @click="modalCancel">取消</Button>
+	        		</div>
+	        	</slot>
 	        </div>
 	    </Modal>
 		
@@ -136,6 +140,21 @@ export default {
 			}
 		},
 		
+		modalFooterHide: {//对话框页脚显示
+			type: Boolean,
+			default: false
+		},
+		
+		modalBtnName: {//对话框页脚按钮名称
+			type: String,
+			default: '确定'
+		},
+		
+		modalBtnPlace: {//对话框页脚按钮位置
+			type: String,
+			default: 'right'
+		},
+		
 	},
     data () {//数据
         return {
@@ -153,6 +172,15 @@ export default {
     		console.log(val);
     		console.log('执行了子组件的事件');
     		
+    	},
+    	
+    	modalOk(){//对话框确定按钮点击事件
+    		this.$emit('on-modal-ok');
+    	},
+    	
+    	modalCancel(){//对话框取消按钮点击事件
+    		this.modalShow = false;
+    		this.$emit('on-modal-cancel');
     	},
     	
     	initColumns(){//初始化表头数据
