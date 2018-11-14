@@ -35,6 +35,9 @@ pageShow | 是否显示分页控件 | Boolean | true
 modalTitle | 对话框标题 | String | 对话框标题
 noDataText | 表格数据为空时显示的提示内容 | String | 暂无数据
 pagingData | 传入分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
+modalFooterHide | 不显示对话框页脚 | Boolean | false
+modalBtnName | 对话框页脚按钮名称 | String | 确定
+modalBtnPlace | 对话框页脚按钮位置 | String | right
 
 
 ### handle参数：
@@ -58,6 +61,8 @@ select-change | 勾选改变时 | checkedData：已选择的数据 | []
 on-btn-click | 点击表格中的按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
 on-poptip-ok | 点击表格中的气泡提示确定按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
 on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
+on-modal-ok | 对话框确定按钮点击事件 | -- | --
+on-modal-cancel | 对话框取消按钮点击事件 | -- | --
 
 
 ### slot：
