@@ -61,8 +61,8 @@
 	        <div slot="footer">
 	        	<slot name="modalFooterBtn">
 	        		<div :style="{textAlign: modalBtnPlace}">
-	        			<Button type="primary" @click="modalOk">{{modalBtnName}}</Button>
-	        			<Button @click="modalCancel">取消</Button>
+	        			<Button v-if="!okBtnHide" type="primary" @click="modalOk">{{modalOkBtnName}}</Button>
+	        			<Button @click="modalCancel">{{modalCancelBtnName}}</Button>
 	        		</div>
 	        	</slot>
 	        </div>
@@ -145,9 +145,19 @@ export default {
 			default: false
 		},
 		
-		modalBtnName: {//对话框页脚按钮名称
+		okBtnHide: {//隐藏对话框页脚确定按钮
+			type: Boolean,
+			default: false
+		},
+		
+		modalOkBtnName: {//对话框页脚确定按钮名称
 			type: String,
 			default: '确定'
+		},
+		
+		modalCancelBtnName: {//对话框页脚取消按钮名称
+			type: String,
+			default: '取消'
 		},
 		
 		modalBtnPlace: {//对话框页脚按钮位置
