@@ -36,7 +36,9 @@ modalTitle | 对话框标题 | String | 对话框标题
 noDataText | 表格数据为空时显示的提示内容 | String | 暂无数据
 pagingData | 传入分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
 modalFooterHide | 不显示对话框页脚 | Boolean | false
-modalBtnName | 对话框页脚按钮名称 | String | 确定
+modalOkBtnName | 对话框页脚确定按钮名称 | String | 确定
+okBtnHide | 隐藏对话框页脚确定按钮 | Boolean | false
+modalCancelBtnName | 对话框页脚取消按钮名称 | String | 取消
 modalBtnPlace | 对话框页脚按钮位置 | String | right
 
 
@@ -72,3 +74,4 @@ on-modal-cancel | 对话框取消按钮点击事件 | -- | --
 header | 表格页头
 footer | 表格页尾
 modalContent | 对话框内容
+modalFooterBtn | 自定义对话框页脚按钮
