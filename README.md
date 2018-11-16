@@ -46,6 +46,7 @@ modalBtnPlace | 对话框页脚按钮位置 | String | right
 参数名 | 说明 | 类型 | 默认值
 :-------: | ------- | :-------: | :-------:
 name | 按钮名称 | String | 按钮
+hideBtn | 隐藏按钮 | Boolean | false
 modalShow | 是否打开对话框 | Boolean | false
 poptipOpen | 是否打开气泡提示 | Boolean | false
 button_props | 按钮组件的iview原生api属性 | Object | {}
