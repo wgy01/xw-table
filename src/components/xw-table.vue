@@ -47,7 +47,7 @@
 		<!--弹窗-->
 		<Modal
 		v-model="modalShow"
-		width="80%"
+		:width="modalWidth"
 		:footer-hide="modalFooterHide"
 		>
 	    	<div slot="header" style="position: relative;">
@@ -138,6 +138,11 @@ export default {
 					page_size: 10,
 				}
 			}
+		},
+		
+		modalWidth: {//对话框宽度
+			type: [String, Number],
+			default: '80%'
 		},
 		
 		modalFooterHide: {//对话框页脚显示

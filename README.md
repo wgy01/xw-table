@@ -35,6 +35,7 @@ pageShow | 是否显示分页控件 | Boolean | true
 modalTitle | 对话框标题 | String | 对话框标题
 noDataText | 表格数据为空时显示的提示内容 | String | 暂无数据
 pagingData | 传入分页数据 | Object | {total: 0, current_page: 1, page_size: 10,}
+modalWidth | 对话框宽度 | String / Number | 80%
 modalFooterHide | 不显示对话框页脚 | Boolean | false
 modalOkBtnName | 对话框页脚确定按钮名称 | String | 确定
 okBtnHide | 隐藏对话框页脚确定按钮 | Boolean | false
