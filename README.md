@@ -67,6 +67,7 @@ on-poptip-ok | 点击表格中的气泡提示确定按钮时触发 | data：返�
 on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：返回表格当前行数据,和当前handle的参数 | {}
 on-modal-ok | 对话框确定按钮点击事件 | -- | --
 on-modal-cancel | 对话框取消按钮点击事件 | -- | --
+on-search | 点击或回车触发搜索按钮事件 | value：搜索框输入的值 | String
 
 
 ### slot：

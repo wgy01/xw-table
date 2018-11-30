@@ -9,7 +9,7 @@
 					<slot name="header" :slotEvent="slotEvent"></slot>
 				</Col>
 				<Col span="8">
-					<Input v-if="seekShow" :search="true" enter-button clearable placeholder="搜索..." class="seek" />
+					<Input v-if="seekShow" class="seek" v-model="searchVal" :search="true" enter-button clearable placeholder="搜索..." @on-search="searchClick" />
 				</Col>
 			</Row>
 		</header>
@@ -174,6 +174,8 @@ export default {
     data () {//数据
         return {
         	
+        	searchVal: '',//搜索框值
+        	
         	modalShow: false,
         	
         	checkedData: [],//已选数据
@@ -181,6 +183,10 @@ export default {
         }
     },
     methods: {//方法
+    	
+    	searchClick(){//点击或回车搜索按钮触发
+    		this.$emit('on-search', this.searchVal);
+    	},
     	
     	slotEvent(val){//插槽事件
     		
