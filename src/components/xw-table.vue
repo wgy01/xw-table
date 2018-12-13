@@ -36,6 +36,7 @@
 			v-if="pageShow"
 			:total="pagingData.total"
 			:page-size="pagingData.page_size"
+			:current="pagingData.current_page"
 			@on-change="pageChange"
 			@on-page-size-change="pageSizeChange"
 			show-total
