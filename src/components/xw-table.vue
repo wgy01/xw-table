@@ -9,7 +9,7 @@
 					<slot name="header" :slotEvent="slotEvent"></slot>
 				</Col>
 				<Col span="8">
-					<Input v-if="seekShow" class="seek" v-model="searchVal" :search="true" enter-button clearable placeholder="搜索..." @on-search="searchClick" />
+					<Input v-if="seekShow" class="seek" v-model="searchVal" :search="true" enter-button clearable :placeholder="searchTxt" @on-search="searchClick" />
 				</Col>
 			</Row>
 		</header>
@@ -113,6 +113,11 @@ export default {
 		seekShow: {//搜索框控件
 			type: Boolean,
 			default: true
+		},
+		
+		searchTxt: {//搜索框描述
+			type: String,
+			default: '搜索...'
 		},
 		
 		pageShow: {//分页控件

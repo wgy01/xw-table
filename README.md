@@ -41,6 +41,7 @@ modalOkBtnName | 对话框页脚确定按钮名称 | String | 确定
 okBtnHide | 隐藏对话框页脚确定按钮 | Boolean | false
 modalCancelBtnName | 对话框页脚取消按钮名称 | String | 取消
 modalBtnPlace | 对话框页脚按钮位置 | String | right
+searchTxt | 搜索框占位文本 | String | 搜索...
 
 
 ### handle参数：
