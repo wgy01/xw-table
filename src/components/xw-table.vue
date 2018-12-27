@@ -18,7 +18,7 @@
 		<Table
 		stripe
 		:columns="tableColumns"
-		:data="tableData"
+		:data="tableDataList"
 		:highlight-row="true"
 		:no-data-text="noDataText"
 		@on-select-all="tabSelectAll"
@@ -180,6 +180,8 @@ export default {
     data () {//数据
         return {
         	
+        	tableDataList: this.tableData,//表格数据
+        	
         	searchVal: '',//搜索框值
         	
         	modalShow: false,
@@ -213,8 +215,39 @@ export default {
     	initColumns(){//初始化表头数据
     		
     		this.tableColumns.forEach(item => {
-    		
-	    		if(item.handle){
+    			
+    			if(item.editable){//编辑文本框
+    				item.render = (h, params) => {
+    					
+    					let currentRow = this.tableDataList.filter(item2 => {
+		    				return item2.id === params.row.id
+		    			})[0];
+    					
+    					if(currentRow.editting){//编辑
+    						
+    						return h('Input', {
+                                props: {
+                                    type: 'text',
+                                    value: currentRow[item.key],
+                                    placeholder:'请输入'+item.title
+                                },
+                                on: {
+                                    'on-change' (event) {
+                                    	params.row[item.key] = event.target.value;
+                                    }
+                                }
+                            });
+    						
+    					}else{//默认
+    						
+    						return h('div',currentRow[item.key]);
+    						
+    					}
+    					
+    				}
+    			}
+    			
+	    		if(item.handle){//操作按钮
 	    			item.render = (h,params) => {
 	    				let children = [];
 	    				item.handle.forEach(btnItem => {

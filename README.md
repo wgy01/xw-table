@@ -4,6 +4,12 @@
 $ npm install xw-table --save
 ```
 
+# 更新
+
+```
+$ npm update xw-table
+```
+
 # 引入
 
 ### 在入口文件 main.js 中如下配置：
@@ -44,7 +50,16 @@ modalBtnPlace | 对话框页脚按钮位置 | String | right
 searchTxt | 搜索框占位文本 | String | 搜索...
 
 
-### handle参数：
+### 表头数据参数：
+
+参数名 | 说明 | 类型 | 默认值
+:-------: | ------- | :-------: | :-------:
+editable | 需要编辑的当前字段 | Boolean | false
+handle | 设置操作按钮 | Array | 无
+
+
+### 表头handle参数：
+
 参数名 | 说明 | 类型 | 默认值
 :-------: | ------- | :-------: | :-------:
 name | 按钮名称 | String | 按钮
@@ -54,6 +69,8 @@ poptipOpen | 是否打开气泡提示 | Boolean | false
 button_props | 按钮组件的iview原生api属性 | Object | {}
 poptip_props | 气泡提示组件的iview原生api属性 | Object | {}
 callback | 按钮渲染时的回调，返回值：params：表格当前行参数，btnParams：按钮参数| Function(params, btnParams) | 无
+rowEdit | 是否打开编辑当前行功能（编辑当前行按钮不支持“button_props”参数） | Boolean | false
+editKeyArr | 需要编辑行的表头key值 | Array | 无
 
 
 ### events：
@@ -69,6 +86,7 @@ on-poptip-cancel | 点击表格中的气泡提示取消按钮时触发 | data：
 on-modal-ok | 对话框确定按钮点击事件 | -- | --
 on-modal-cancel | 对话框取消按钮点击事件 | -- | --
 on-search | 点击或回车触发搜索按钮事件 | value：搜索框输入的值 | String
+on-editRow-save | 点击编辑但前行的保存按钮 | editSuccData：返回保存成功后的数据 | Object
 
 
 ### slot：
