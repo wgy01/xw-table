@@ -22,7 +22,6 @@
 		:highlight-row="true"
 		:no-data-text="noDataText"
 		@on-select-all="tabSelectAll"
-		@on-select-all-cancel="tabSelectAllCancel"
 		@on-select="tabSelect"
 		@on-selection-change="tabSelectionChange"
 		@on-select-cancel="tabSelectCancel"
@@ -89,6 +88,10 @@ export default {
 		 * 默认值 default: ''
 		 * 
 		 */
+		
+		tableId: {//表格唯一标识
+			type: Number,
+		},
 		
 		tableColumns: {//表头数据
 			type: Array,
@@ -188,6 +191,13 @@ export default {
         	
         	checkedData: [],//已选数据
         	
+        	currentCheckedData: [],//当前已选中数据
+        	
+        	routerState: {//路由状态
+    			['page'+this.tableId]: 1,
+            	['pageSize'+this.tableId]: 10,
+    		},
+    		
         }
     },
     methods: {//方法
@@ -265,49 +275,118 @@ export default {
     		
     	},
     	
+    	setRoutePara(){//设置路由参数
+    		
+    		this.$router.push(
+	    		{
+	    			name: this.$route.name,
+	    			query: Object.assign({}, this.$route.query, this.routerState)
+	    		}
+    		);
+    		
+    	},
+    	
     	pageChange(page){//页码改变时
+    		
+    		this.routerState['page'+this.tableId] = page;
+    		
+    		this.setRoutePara();//设置路由参数
+    		
     		this.$emit('on-page-change', page);
+    		
     	},
     	
     	pageSizeChange(page_size){//切换每页条数时的回调，返回切换后的每页条数
+    		
+    		this.routerState['pageSize'+this.tableId] = page_size;
+    		
+    		this.setRoutePara();//设置路由参数
+    		
     		this.$emit('on-page-size-change', page_size);
+    		
     	},
     	
     	tabSelectAll(selection){//全选
     		
-    		this.tableData.forEach(item => {
-    			selection.forEach(item2 => {
-    				if(item.id === item2.id){
-    					this.$set(item, '_checked', true);
-    				}
-    			});
-    		});
+    		let SW1 = false;
     		
-    	},
-    	
-    	tabSelectAllCancel(selection){//取消全选
+    		let SW2 = true;
     		
-    		this.tableData.forEach(item => {
-				this.$set(item, '_checked', false);
-			});
-			
+    		if(this.checkedData.length > 0){
+    			
+    			selection.forEach(item1 => {
+    				
+    				this.checkedData.forEach(item2 => {
+    					
+    					if(item1.id != item2.id){
+    						SW1 = false;
+    					}else{
+    						SW1 = true;
+    					}
+    					
+    					if(SW1){
+    						SW2 = false;
+    					}
+    				
+	    			});
+	    			
+	    			if(SW2){
+	    				item1._checked = true;
+    					this.checkedData.push(item1);
+	    			}else{
+	    				
+	    				let SW3 = true;
+	    				
+	    				this.checkedData.forEach(item3 => {
+	    					if(item1.id == item3.id){
+	    						SW3 = false;
+	    						item3._checked = true;
+	    					}
+	    				});
+	    				
+	    				if(SW3){
+	    					item1._checked = true;
+    						this.checkedData.push(item1);
+	    				}
+	    				
+	    			}
+    				
+	    		});
+    			
+    		}else{
+    			
+    			selection.forEach(item => {
+    				item._checked = true;
+    				this.checkedData.push(item);
+	    		});
+    			
+    		}
+    		
     	},
     	
     	tabSelect(selection, row){//单选
     		
-    		this.tableData.forEach(item => {
-    			if(item.id === row.id){
-      				this.$set(item, '_checked', true);
+    		let SW = true;
+    		
+    		this.checkedData.forEach(item => {
+    			if(item.id == row.id){
+    				SW = false;
+					item._checked = true;
     			}
     		});
     		
+    		if(SW){
+    			row._checked = true;
+    			this.checkedData.push(row);
+    		}
+    		
     	},
     	
-    	tabSelectCancel(selection, row){//单个取消
+    	tabSelectCancel(selection, row){//取消单选
     		
-    		this.tableData.forEach(item => {
-    			if(item.id === row.id){
-      				this.$set(item, '_checked', false);
+    		this.checkedData.forEach(item => {
+    			if(item.id == row.id){
+					item._checked = false;
     			}
     		});
     		
@@ -315,9 +394,27 @@ export default {
     	
     	tabSelectionChange(selection){//勾选改变时
     		
-    		this.checkedData = selection;
+    		if(selection.length == 0){//取消全选
+    			this.checkedData.forEach(item1 => {
+    				this.tableDataList.forEach(item2 => {
+    					if(item1.id == item2.id){
+    						item1._checked = false;
+    					}
+    				});
+	    		});
+    		}
     		
-    		this.$emit('select-change', this.checkedData);
+    		let newArr = [];
+    		
+    		this.checkedData.forEach(item => {
+    			if(item._checked){
+    				newArr.push(item);
+    			}
+    		});
+    		
+    		this.currentCheckedData = newArr;
+    		
+    		this.$emit('select-change', this.currentCheckedData);
     		
     	},
     	
@@ -327,6 +424,38 @@ export default {
     },
     watch: {//监测数据变化
     	
+    	'$route'(to){// 对路由变化作出响应...
+    		
+    		if((Number(this.pagingData.total) > Number(to.query['pageSize'+this.tableId])) && (Number(to.query['page'+this.tableId]) <= (Math.ceil(Number(this.pagingData.total)/Number(to.query['pageSize'+this.tableId]))))){//一页
+    			
+    			this.pagingData.current_page = Number(to.query['page'+this.tableId]);
+    			
+    		}else{
+    			
+    			this.setRoutePara();
+    			
+    		}
+    		
+    		this.pagingData.page_size = Number(to.query['pageSize'+this.tableId]);
+    		
+    	},
+    	
+    	tableData(newData){
+    		
+    		if(this.currentCheckedData.length > 0){
+    			newData.forEach(item => {
+    				this.currentCheckedData.forEach(item2 => {
+    					if(item.id == item2.id){
+    						item._checked = item2._checked;
+    					}
+    				});
+    			});
+    		}
+    		
+    		this.tableDataList = newData;
+    		
+    	},
+    	
 	},
     
     //===================组件钩子===========================
@@ -334,6 +463,18 @@ export default {
     created () {//实例被创建完毕之后执行
     	
     	this.initColumns();
+    	
+    	if(this.$route.query['page'+this.tableId]){
+    		this.pagingData.current_page = Number(this.$route.query['page'+this.tableId]);
+    	}
+    	if(this.$route.query['pageSize'+this.tableId]){
+    		this.pagingData.page_size = Number(this.$route.query['pageSize'+this.tableId]);
+    	}
+    	
+    	this.$emit('route-query', {
+    		page: Number(this.$route.query['page'+this.tableId]),
+    		pageSize: Number(this.$route.query['pageSize'+this.tableId])
+    	});
     	
 	},
     mounted () {//模板被渲染完毕之后执行

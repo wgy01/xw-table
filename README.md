@@ -32,6 +32,7 @@ Vue.use(xwTable);
 
 属性 | 说明 | 类型 | 默认值
 :-------: | ------- | :-------: | :-------:
+tableId | 表格唯一标识 | Number | 无
 tableColumns | 传入表头数据 | Array | 必传数据
 tableData | 传入表格数据 | Array | []
 headerShow | 是否显示页眉 | Boolean | true
@@ -87,6 +88,7 @@ on-modal-ok | 对话框确定按钮点击事件 | -- | --
 on-modal-cancel | 对话框取消按钮点击事件 | -- | --
 on-search | 点击或回车触发搜索按钮事件 | value：搜索框输入的值 | String
 on-editRow-save | 点击编辑但前行的保存按钮 | editSuccData：返回保存成功后的数据 | Object
+route-query | 刷新页面后获取当前路由状态（实例被创建完毕之后执行） | $route.query | Object
 
 
 ### slot：
