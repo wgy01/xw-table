@@ -1,3 +1,9 @@
+# 版本
+
+```
+v1.0.9
+```
+
 # 安装
 
 ```
@@ -49,6 +55,7 @@ okBtnHide | 隐藏对话框页脚确定按钮 | Boolean | false
 modalCancelBtnName | 对话框页脚取消按钮名称 | String | 取消
 modalBtnPlace | 对话框页脚按钮位置 | String | right
 searchTxt | 搜索框占位文本 | String | 搜索...
+loading | 表格是否加载中 | Boolean | false
 
 
 ### 表头数据参数：

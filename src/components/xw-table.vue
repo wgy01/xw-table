@@ -21,6 +21,7 @@
 		:data="tableDataList"
 		:highlight-row="true"
 		:no-data-text="noDataText"
+		:loading="loading"
 		@on-select-all="tabSelectAll"
 		@on-select="tabSelect"
 		@on-selection-change="tabSelectionChange"
@@ -102,7 +103,12 @@ export default {
 			type: Array,
 			default: () => []
 		},
-
+		
+		loading: {//表格是否加载中
+			type: Boolean,
+			default: false
+		},
+		
 		headerShow: {//页眉
 			type: Boolean,
 			default: true
