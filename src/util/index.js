@@ -16,9 +16,9 @@ export const buttonItem = (vm, h, params, btnParams={}) => {
 		return item.id === params.row.id
 	})[0];
 	
-	btnParams.callback && btnParams.callback(params, btnParams);
+	btnParams.callback && btnParams.callback(params, btnParams);//按钮加载中回调
 	
-	if(btnParams.hideBtn && btnParams.hideBtn === true) return false;
+	if(btnParams.hideBtn && btnParams.hideBtn === true) return false;//隐藏按钮
 	
 	if(btnParams.poptipOpen){//二次确认功能按钮
 		

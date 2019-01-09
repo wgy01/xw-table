@@ -78,7 +78,7 @@ button_props | 按钮组件的iview原生api属性 | Object | {}
 poptip_props | 气泡提示组件的iview原生api属性 | Object | {}
 callback | 按钮渲染时的回调，返回值：params：表格当前行参数，btnParams：按钮参数| Function(params, btnParams) | 无
 rowEdit | 是否打开编辑当前行功能（编辑当前行按钮不支持“button_props”参数） | Boolean | false
-editKeyArr | 需要编辑行的表头key值 | Array | 无
+editKeyArr | 需要编辑行的表头key值（rowEdit为true时必填） | Array | 无
 
 
 ### events：
