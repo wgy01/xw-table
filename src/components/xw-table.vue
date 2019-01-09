@@ -90,9 +90,9 @@ export default {
 		 * 
 		 */
 		
-		tableId: {//表格唯一标识
-			type: Number,
-		},
+//		tableId: {//表格唯一标识
+//			type: Number,
+//		},
 		
 		tableColumns: {//表头数据
 			type: Array,
@@ -199,10 +199,10 @@ export default {
         	
         	currentCheckedData: [],//当前已选中数据
         	
-        	routerState: {//路由状态
-    			['page'+this.tableId]: 1,
-            	['pageSize'+this.tableId]: 10,
-    		},
+//      	routerState: {//路由状态
+//  			['page'+this.tableId]: 1,
+//          	['pageSize'+this.tableId]: 10,
+//  		},
     		
         }
     },
@@ -281,22 +281,22 @@ export default {
     		
     	},
     	
-    	setRoutePara(){//设置路由参数
-    		
-    		this.$router.push(
-	    		{
-	    			name: this.$route.name,
-	    			query: Object.assign({}, this.$route.query, this.routerState)
-	    		}
-    		);
-    		
-    	},
+//  	setRoutePara(){//设置路由参数
+//  		
+//  		this.$router.push(
+//	    		{
+//	    			name: this.$route.name,
+//	    			query: Object.assign({}, this.$route.query, this.routerState)
+//	    		}
+//  		);
+//  		
+//  	},
     	
     	pageChange(page){//页码改变时
     		
-    		this.routerState['page'+this.tableId] = page;
-    		
-    		this.setRoutePara();//设置路由参数
+//  		this.routerState['page'+this.tableId] = page;
+//  		
+//  		this.setRoutePara();//设置路由参数
     		
     		this.$emit('on-page-change', page);
     		
@@ -304,9 +304,9 @@ export default {
     	
     	pageSizeChange(page_size){//切换每页条数时的回调，返回切换后的每页条数
     		
-    		this.routerState['pageSize'+this.tableId] = page_size;
-    		
-    		this.setRoutePara();//设置路由参数
+//  		this.routerState['pageSize'+this.tableId] = page_size;
+//  		
+//  		this.setRoutePara();//设置路由参数
     		
     		this.$emit('on-page-size-change', page_size);
     		
@@ -432,21 +432,21 @@ export default {
     	
     	'$route'(to){// 对路由变化作出响应...
     		
-    		if((Number(this.pagingData.total) > Number(to.query['pageSize'+this.tableId])) && (Number(to.query['page'+this.tableId]) <= (Math.ceil(Number(this.pagingData.total)/Number(to.query['pageSize'+this.tableId]))))){//一页
-    			
-    			this.pagingData.current_page = Number(to.query['page'+this.tableId]);
-    			
-    		}else{
-    			
-    			this.setRoutePara();
-    			
-    		}
-    		
-    		this.pagingData.page_size = Number(to.query['pageSize'+this.tableId]);
+//  		if((Number(this.pagingData.total) > Number(to.query['pageSize'+this.tableId])) && (Number(to.query['page'+this.tableId]) <= (Math.ceil(Number(this.pagingData.total)/Number(to.query['pageSize'+this.tableId]))))){//一页
+//  			
+//  			this.pagingData.current_page = Number(to.query['page'+this.tableId]);
+//  			
+//  		}else{
+//  			
+//  			this.setRoutePara();
+//  			
+//  		}
+//  		
+//  		this.pagingData.page_size = Number(to.query['pageSize'+this.tableId]);
     		
     	},
     	
-    	tableData(newData){
+    	tableData(newData){//切换页码时显示已勾选项
     		
     		if(this.currentCheckedData.length > 0){
     			newData.forEach(item => {
@@ -470,17 +470,17 @@ export default {
     	
     	this.initColumns();
     	
-    	if(this.$route.query['page'+this.tableId]){
-    		this.pagingData.current_page = Number(this.$route.query['page'+this.tableId]);
-    	}
-    	if(this.$route.query['pageSize'+this.tableId]){
-    		this.pagingData.page_size = Number(this.$route.query['pageSize'+this.tableId]);
-    	}
-    	
-    	this.$emit('route-query', {
-    		page: Number(this.$route.query['page'+this.tableId]),
-    		pageSize: Number(this.$route.query['pageSize'+this.tableId])
-    	});
+//  	if(this.$route.query['page'+this.tableId]){
+//  		this.pagingData.current_page = Number(this.$route.query['page'+this.tableId]);
+//  	}
+//  	if(this.$route.query['pageSize'+this.tableId]){
+//  		this.pagingData.page_size = Number(this.$route.query['pageSize'+this.tableId]);
+//  	}
+//  	
+//  	this.$emit('route-query', {
+//  		page: Number(this.$route.query['page'+this.tableId]),
+//  		pageSize: Number(this.$route.query['pageSize'+this.tableId])
+//  	});
     	
 	},
     mounted () {//模板被渲染完毕之后执行
